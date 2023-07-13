@@ -49,7 +49,18 @@
                             <goal>xjc</goal>
                         </goals>
                     </execution>
-
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/generated-sources/xjc</source>
+                            </sources>
+                        </configuration>
+                    </execution>
                 </executions>
                 <configuration>
                     <sources>
