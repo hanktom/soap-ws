@@ -8,7 +8,6 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-
     <xs:element name="getCountryResponse">
         <xs:complexType>
             <xs:sequence>

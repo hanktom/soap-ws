@@ -15,6 +15,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import java.util.List;
+
 @Endpoint
 public class CountryEndpoint {
     private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
@@ -33,6 +35,12 @@ public class CountryEndpoint {
     public GetCountryResponse getCountry(@RequestPayload GetCountryRequest request) {
         GetCountryResponse response = new GetCountryResponse();
 //        response.setCountry(countryRepository.findCountry(request.getName()));
+        List<TblCountry> list = tblCountryRepository.findAllByLanguage("en");
+        log.info(list.size()+"");
+        for (TblCountry c : list) {
+            log.info(c.getCountryName());
+        }
+
         TblCountry tblCountry = tblCountryRepository.findByCountryName(request.getName());
         log.info(tblCountry.getCountryName());
         Country country = new Country();
@@ -41,6 +49,13 @@ public class CountryEndpoint {
         country.setCurrency(Currency.EUR);
         country.setPopulation(100);
         response.setCountry(country);
+        return response;
+    }
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllCountryRequest")
+    @ResponsePayload
+    public GetCountryResponse getAllCountries(@RequestPayload GetCountryRequest request) {
+        GetCountryResponse response = new GetCountryResponse();
+
         return response;
     }
 
