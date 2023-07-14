@@ -35,10 +35,10 @@ public class CountryEndpoint {
     public GetCountryResponse getCountry(@RequestPayload GetCountryRequest request) {
         GetCountryResponse response = new GetCountryResponse();
 //        response.setCountry(countryRepository.findCountry(request.getName()));
-        List<TblCountry> list = tblCountryRepository.findAllByLanguage("en");
+        List<Object[]> list = tblCountryRepository.nativeQuery("en");
         log.info(list.size()+"");
-        for (TblCountry c : list) {
-            log.info(c.getCountryName());
+        for (Object[] c : list) {
+            log.info(c[0] + "," + c[1]);
         }
 
         TblCountry tblCountry = tblCountryRepository.findByCountryName(request.getName());

@@ -16,4 +16,8 @@ public interface TblCountryRepository extends JpaRepository<TblCountry, Integer>
 
     @Query("select c from TblCountry c where c.languageCodes LIKE %?1%")
     List<TblCountry> findAllByLanguage(String langCode);
+
+    @Query(value = "select c.id_country ,c.`Country Name` from tbl_country c where c.`Language Codes` LIKE %?1%"
+            , nativeQuery = true)
+    List<Object[]> nativeQuery(String code);
 }
