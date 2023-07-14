@@ -1,7 +1,7 @@
 package com.soetek.soapws.repository;
 
-import com.soetek.soapws.Country;
-import com.soetek.soapws.Currency;
+import io.spring.guides.gs_producing_web_service.Country;
+import io.spring.guides.gs_producing_web_service.Currency;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;

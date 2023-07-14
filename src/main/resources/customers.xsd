@@ -1,6 +1,6 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            xmlns:tns="http://soetek.com/soapws.xsd"
-            targetNamespace="http://soetek.com/soapws.xsd"
+            xmlns:tns="http://soetek.com/soapws"
+            targetNamespace="http://soetek.com/soapws"
             elementFormDefault="qualified">
     <xsd:element name="PurchaseOrder" type="tns:PurchaseOrderType"/>
     <xsd:complexType name="PurchaseOrderType">
