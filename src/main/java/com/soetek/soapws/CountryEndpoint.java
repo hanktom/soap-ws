@@ -51,12 +51,5 @@ public class CountryEndpoint {
         response.setCountry(country);
         return response;
     }
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllCountryRequest")
-    @ResponsePayload
-    public GetCountryResponse getAllCountries(@RequestPayload GetCountryRequest request) {
-        GetCountryResponse response = new GetCountryResponse();
-
-        return response;
-    }
 
 }
