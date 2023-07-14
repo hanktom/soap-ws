@@ -1,7 +1,7 @@
-package com.soetek.soapws;
+package com.soetek.soapws.repository;
 
-import io.spring.guides.gs_producing_web_service.Country;
-import io.spring.guides.gs_producing_web_service.Currency;
+import com.soetek.soapws.Country;
+import com.soetek.soapws.Currency;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -15,6 +15,7 @@ public class CountryRepository {
 
     @PostConstruct
     public void initData() {
+
         Country spain = new Country();
         spain.setName("Spain");
         spain.setCapital("Madrid");
