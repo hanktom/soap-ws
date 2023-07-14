@@ -21,34 +21,36 @@ import java.util.List;
 public class CountryEndpoint {
     private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
     public static final Logger log = LoggerFactory.getLogger(CountryEndpoint.class);
-    private CountryRepository countryRepository;
-    private TblCountryRepository tblCountryRepository;
-
     @Autowired
-    public CountryEndpoint(TblCountryRepository countryRepository) {
+    private CountryRepository countryRepository;
+//    private TblCountryRepository tblCountryRepository;
+
+//    @Autowired
+//    public CountryEndpoint(CountryRepository countryRepository) {
 //        this.countryRepository = countryRepository;
-        this.tblCountryRepository = countryRepository;
-    }
+//        this.countryRepository = countryRepository;
+//    }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryRequest")
     @ResponsePayload
     public GetCountryResponse getCountry(@RequestPayload GetCountryRequest request) {
         GetCountryResponse response = new GetCountryResponse();
 //        response.setCountry(countryRepository.findCountry(request.getName()));
-        List<Object[]> list = tblCountryRepository.nativeQuery("en");
-        log.info(list.size()+"");
-        for (Object[] c : list) {
-            log.info(c[0] + "," + c[1]);
-        }
-
-        TblCountry tblCountry = tblCountryRepository.findByCountryName(request.getName());
-        log.info(tblCountry.getCountryName());
-        Country country = new Country();
-        country.setName(tblCountry.getCountryName());
-        country.setCapital(tblCountry.getCapital());
-        country.setCurrency(Currency.EUR);
-        country.setPopulation(100);
-        response.setCountry(country);
+//        List<Object[]> list = tblCountryRepository.nativeQuery("en");
+//        log.info(list.size()+"");
+//        for (Object[] c : list) {
+//            log.info(c[0] + "," + c[1]);
+//        }
+//        log.info(request.getName());
+//        TblCountry tblCountry = tblCountryRepository.findByCountryName(request.getName());
+//        log.info(tblCountry.getCountryName());
+//        Country country = new Country();
+//        country.setName(tblCountry.getCountryName());
+//        country.setCapital(tblCountry.getCapital());
+//        country.setCurrency(Currency.EUR);
+//        country.setPopulation(100);
+//        response.setCountry(country);
+        response.setCountry(countryRepository.findCountry(request.getName()));
         return response;
     }
 

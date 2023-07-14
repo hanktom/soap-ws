@@ -1,5 +1,6 @@
 package com.soetek.soapws;
 
+import com.soetek.soapws.repository.CountryRepository;
 import com.soetek.soapws.repository.TblCountryRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,10 @@ import static org.springframework.ws.test.server.ResponseMatchers.noFault;
 public class CountryEndpointTest {
     @Autowired
     MockWebServiceClient client;
-
     @MockBean
-    TblCountryRepository tblCountryRepository;
+    private CountryRepository countryRepository;
+//    @MockBean
+//    TblCountryRepository tblCountryRepository;
     @Test
     void getCountryTest() {
         final var request = new StringSource(
