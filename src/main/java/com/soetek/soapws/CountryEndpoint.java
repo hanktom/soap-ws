@@ -3,6 +3,8 @@ package com.soetek.soapws;
 import com.soetek.soapws.model.TblCountry;
 import com.soetek.soapws.repository.CountryRepository;
 import com.soetek.soapws.repository.TblCountryRepository;
+import io.spring.guides.gs_producing_web_service.Country;
+import io.spring.guides.gs_producing_web_service.Currency;
 import io.spring.guides.gs_producing_web_service.GetCountryRequest;
 import io.spring.guides.gs_producing_web_service.GetCountryResponse;
 import org.slf4j.Logger;
@@ -21,9 +23,9 @@ public class CountryEndpoint {
     private TblCountryRepository tblCountryRepository;
 
     @Autowired
-    public CountryEndpoint(CountryRepository countryRepository) {
-        this.countryRepository = countryRepository;
-//        this.tblCountryRepository = countryRepository;
+    public CountryEndpoint(TblCountryRepository countryRepository) {
+//        this.countryRepository = countryRepository;
+        this.tblCountryRepository = countryRepository;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryRequest")
@@ -31,14 +33,14 @@ public class CountryEndpoint {
     public GetCountryResponse getCountry(@RequestPayload GetCountryRequest request) {
         GetCountryResponse response = new GetCountryResponse();
 //        response.setCountry(countryRepository.findCountry(request.getName()));
-//        TblCountry tblCountry = tblCountryRepository.findByCountryName(request.getName());
-//        log.info(tblCountry.getCountryName());
-//        Country country = new Country();
-//        country.name = tblCountry.getCountryName();
-//        country.capital = tblCountry.getCapital();
-//        country.currency = Currency.EUR;
-//        country.population = 100;
-        response.setCountry(countryRepository.findCountry(request.getName()));
+        TblCountry tblCountry = tblCountryRepository.findByCountryName(request.getName());
+        log.info(tblCountry.getCountryName());
+        Country country = new Country();
+        country.setName(tblCountry.getCountryName());
+        country.setCapital(tblCountry.getCapital());
+        country.setCurrency(Currency.EUR);
+        country.setPopulation(100);
+        response.setCountry(country);
         return response;
     }
 
